@@ -3,6 +3,7 @@ import Navbar from "../components/Navbar";
 import Announcement from "../components/Announcement";
 import Products from "../components/Products";
 import Newsletter from "../components/Newsletter";
+import Footer from "../components/Footer";
 
 const Container = styled.div``;
 const Title = styled.h1`
@@ -24,7 +25,7 @@ const Select = styled.select`
   margin-right: 7px;
   font-size: 16px;
 `;
-const SelectOption = styled.option``;
+const SelectItem = styled.option``;
 export default function ProductList() {
   return (
     <Container>
@@ -35,32 +36,33 @@ export default function ProductList() {
         <Filter>
           <FilterText>Filter Products</FilterText>
           <Select>
-            <SelectOption>All</SelectOption>
-            <SelectOption>Camping</SelectOption>
-            <SelectOption>Outdoors</SelectOption>
-            <SelectOption>Backpacks</SelectOption>
-            <SelectOption>Tents</SelectOption>
+            <SelectItem>All</SelectItem>
+            <SelectItem>Camping</SelectItem>
+            <SelectItem>Outdoors</SelectItem>
+            <SelectItem>Backpacks</SelectItem>
+            <SelectItem>Tents</SelectItem>
           </Select>
           <Select>
-            <SelectOption>All</SelectOption>
-            <SelectOption>Camping</SelectOption>
-            <SelectOption>Outdoors</SelectOption>
-            <SelectOption>Backpacks</SelectOption>
-            <SelectOption>Tents</SelectOption>
+            <SelectItem>All</SelectItem>
+            <SelectItem>Camping</SelectItem>
+            <SelectItem>Outdoors</SelectItem>
+            <SelectItem>Backpacks</SelectItem>
+            <SelectItem>Tents</SelectItem>
           </Select>
         </Filter>
         <Filter>
           <FilterText>Sort Products</FilterText>
           <Select>
-            <SelectOption>All</SelectOption>
-            <SelectOption>Camping</SelectOption>
-            <SelectOption>Outdoors</SelectOption>
-            <SelectOption>Backpacks</SelectOption>
-            <SelectOption>Tents</SelectOption>
+            <SelectItem>All</SelectItem>
+            <SelectItem>Camping</SelectItem>
+            <SelectItem>Outdoors</SelectItem>
+            <SelectItem>Backpacks</SelectItem>
+            <SelectItem>Tents</SelectItem>
           </Select>
         </Filter>
       </FilterContainer>
       <Products />
+      <Footer />
       <Newsletter />
     </Container>
   );
