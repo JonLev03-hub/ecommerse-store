@@ -12,16 +12,10 @@ const Container = styled.div`
   max-width: 1600px;
   margin: 5vh auto;
 `;
-const Title = styled.h1`
-  width: 100%;
-  border-bottom: 2px solid #ccc;
-  margin-bottom: 20px;
-`;
 
-export default function PopularProducts() {
+export default function Products() {
   return (
     <Container>
-      <Title>Popular Products</Title>
       {popularProducts.map((item) => (
         <Product props={item} key={item.id} />
       ))}
