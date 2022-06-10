@@ -26,13 +26,13 @@ export const categories = [
     text: "Get all the gear you need to explore where you want",
   },
   {
-    id: 1,
+    id: 2,
     title: "Climbing",
     image: "./images/Climbing.jpg",
     text: "Get all the gear you need to explore where you want",
   },
   {
-    id: 1,
+    id: 3,
     title: "Camping",
     image: "./images/WaterSports.jpg",
     text: "Get all the gear you need to explore where you want",
@@ -45,31 +45,31 @@ export const popularProducts = [
     image: "./ProductImages/backpack1.jpg",
   },
   {
-    id: 1,
+    id: 2,
     image: "./ProductImages/backpack2.jpg",
   },
   {
-    id: 1,
+    id: 3,
     image: "./ProductImages/boots.jpg",
   },
   {
-    id: 1,
+    id: 4,
     image: "./ProductImages/hammock.jpg",
   },
   {
-    id: 1,
+    id: 5,
     image: "./ProductImages/lantern.jpg",
   },
   {
-    id: 1,
+    id: 6,
     image: "./ProductImages/lighter.jpg",
   },
   {
-    id: 1,
+    id: 7,
     image: "./ProductImages/tent.jpg",
   },
   {
-    id: 1,
+    id: 8,
     image: "./ProductImages/waterbottle.jpg",
   },
 ];

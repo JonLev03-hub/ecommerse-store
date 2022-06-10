@@ -74,9 +74,7 @@ export default function Slider() {
     if (direction === "right") {
       setSlide(slide < 2 ? slide + 1 : 0);
     }
-    console.log(slide);
   };
-  console.log(slides);
   return (
     <Container>
       <Arrow direction="left" onClick={() => HandleClick("left")}>

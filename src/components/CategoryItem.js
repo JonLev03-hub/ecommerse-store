@@ -36,7 +36,6 @@ const Button = styled.button`
   color: white;
 `;
 export default function CategoryItem(props) {
-  console.log(props);
   return (
     <Container>
       <Image src={props.props.image} />

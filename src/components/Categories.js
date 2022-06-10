@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { categories } from "../data";
 import CategoryItem from "./CategoryItem";
+import { ShoppingCartOutlined } from "@mui/icons-material";
 
 const Container = styled.div`
   display: flex;
@@ -12,7 +13,7 @@ export default function Categories() {
   return (
     <Container>
       {categories.map((item) => (
-        <CategoryItem props={item} />
+        <CategoryItem props={item} key={item.id} />
       ))}
     </Container>
   );
