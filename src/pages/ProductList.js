@@ -12,6 +12,7 @@ const Title = styled.h1`
 const FilterContainer = styled.div`
   display: flex;
   margin: 20px;
+  flex-wrap: wrap;
 `;
 const Filter = styled.div`
   margin: 20px;
@@ -42,13 +43,6 @@ export default function ProductList() {
             <SelectItem>Backpacks</SelectItem>
             <SelectItem>Tents</SelectItem>
           </Select>
-          <Select>
-            <SelectItem>All</SelectItem>
-            <SelectItem>Camping</SelectItem>
-            <SelectItem>Outdoors</SelectItem>
-            <SelectItem>Backpacks</SelectItem>
-            <SelectItem>Tents</SelectItem>
-          </Select>
         </Filter>
         <Filter>
           <FilterText>Sort Products</FilterText>
@@ -62,8 +56,8 @@ export default function ProductList() {
         </Filter>
       </FilterContainer>
       <Products />
-      <Footer />
       <Newsletter />
+      <Footer />
     </Container>
   );
 }

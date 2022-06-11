@@ -4,11 +4,13 @@ import Announcement from "../components/Announcement";
 import Newsletter from "../components/Newsletter";
 import Footer from "../components/Footer";
 import { Remove, Add } from "@mui/icons-material";
+import { breakOne, breakTwo } from "../responsive";
 const Container = styled.div``;
 
 const Wrapper = styled.div`
   padding: 50px;
   display: flex;
+  ${breakOne({ flexDirection: "column" })}
 `;
 const ImgContainer = styled.div`
   flex: 1;
@@ -16,13 +18,14 @@ const ImgContainer = styled.div`
 
 const Image = styled.img`
   width: 100%;
-  height: 90vh;
+  max-width: 650px;
   object-fit: cover;
 `;
 
 const TextContainer = styled.div`
   flex: 1;
   padding: 0 50px;
+  ${breakOne({ padding: "20px 0px" })}
 `;
 
 const Title = styled.h1`
@@ -86,7 +89,8 @@ const Amount = styled.span`
 `;
 
 const Button = styled.button`
-  padding: 15px;
+  padding: 15px 60px;
+  margin: 15px 0px;
   border: 2px solid teal;
   background-color: transparent;
   cursor: pointer;
@@ -142,8 +146,8 @@ export default function Product() {
               <Amount>1</Amount>
               <Add />
             </AmountContainer>
-            <Button>Add To Cart</Button>
           </AddContainer>
+          <Button>Add To Cart</Button>
         </TextContainer>
       </Wrapper>
       <Newsletter />

@@ -1,12 +1,13 @@
 import styled from "styled-components";
 import { categories } from "../data";
 import CategoryItem from "./CategoryItem";
-import { ShoppingCartOutlined } from "@mui/icons-material";
+import { breakOne } from "../responsive";
 
 const Container = styled.div`
   display: flex;
   padding: 20px;
   justify-content: around;
+  ${breakOne({ flexDirection: "column", padding: "10px 0" })}
 `;
 
 export default function Categories() {

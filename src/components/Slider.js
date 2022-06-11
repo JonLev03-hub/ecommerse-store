@@ -3,12 +3,14 @@ import ArrowBackIosNewOutlinedIcon from "@mui/icons-material/ArrowBackIosNewOutl
 import ArrowForwardIosOutlinedIcon from "@mui/icons-material/ArrowForwardIosOutlined";
 import { useState } from "react";
 import { slides } from "../data";
+import { breakOne } from "../responsive";
 
 const Container = styled.div`
   width: 100%;
   height: 100vh;
   position: relative;
   overflow: hidden;
+  ${breakOne({ display: "none" })}
 `;
 const Arrow = styled.div`
   width: 50px;

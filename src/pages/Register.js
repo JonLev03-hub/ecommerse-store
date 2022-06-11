@@ -1,8 +1,12 @@
 import styled from "styled-components";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import { breakOne, breakTwo } from "../responsive";
 const Container = styled.div`
   height: 100vh;
+`;
+const Disapear = styled.div`
+  ${breakTwo({ display: "none" })}
 `;
 const Main = styled.main`
   background: linear-gradient(
@@ -22,6 +26,7 @@ const Wrapper = styled.div`
   background-color: white;
   padding: 20px;
   width: 40%;
+  ${breakOne({ width: "90%" })}
 `;
 const Title = styled.h1`
   font-size: 24px;
@@ -54,7 +59,9 @@ const Button = styled.button`
 export default function Register() {
   return (
     <Container>
-      <Navbar />
+      <Disapear>
+        <Navbar />
+      </Disapear>
       <Main>
         <Wrapper>
           <Title>Create Your Account</Title>
@@ -73,7 +80,9 @@ export default function Register() {
           </Form>
         </Wrapper>
       </Main>
-      <Footer />
+      <Disapear>
+        <Footer />
+      </Disapear>
     </Container>
   );
 }

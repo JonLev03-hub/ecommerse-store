@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Send } from "@mui/icons-material";
+import { breakOne, breakTwo } from "../responsive";
 
 const Container = styled.div`
   height: 50vh;
@@ -9,15 +10,21 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   margin-top: 30px;
+  ${breakOne({ textAlign: "center" })}
+  ${breakTwo({ height: "fit-content", padding: "20px 0" })}
 `;
 const Title = styled.h1`
   font-size: 60px;
   margin: 10px;
   color: #333;
+  ${breakOne({ fontSize: "40px" })}
+  ${breakTwo({ fontSize: "30px" })}
 `;
 const Text = styled.p`
   font-size: 24px;
   margin: 10px;
+  ${breakOne({ textAlign: "center", fontSize: "20px" })}
+  ${breakTwo({ fontSize: "16px" })}
 `;
 const Form = styled.form`
   width: 50%;
@@ -25,6 +32,7 @@ const Form = styled.form`
   background: white;
   display: flex;
   justify-content: space-between;
+  ${breakOne({ width: "80%" })}
 `;
 const Input = styled.input`
   border: 1px solid lightgrey;
@@ -37,6 +45,7 @@ const Button = styled.button`
   background-color: teal;
   border-radius: 0%;
   flex-grow: 1;
+  min-width: 75px;
   color: white;
   transition: all 0.2s ease-in-out;
   &:hover {

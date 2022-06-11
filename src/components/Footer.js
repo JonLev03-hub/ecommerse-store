@@ -1,9 +1,11 @@
 import styled from "styled-components";
 import { Instagram, Facebook, Twitter } from "@mui/icons-material";
 import { Phone, MailOutline, Room } from "@mui/icons-material";
+import { breakOne } from "../responsive";
 
 const Container = styled.div`
   display: flex;
+  ${breakOne({ flexDirection: "column" })}
 `;
 const Left = styled.div`
   flex: 1;
@@ -33,6 +35,7 @@ const MediaIcon = styled.div`
 const Center = styled.div`
   flex: 1;
   margin: 20px;
+  ${breakOne({ display: "none" })}
 `;
 const Title = styled.h3`
   margin-bottom: 15px;

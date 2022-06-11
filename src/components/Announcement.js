@@ -1,11 +1,13 @@
 import styled from "styled-components";
 const Container = styled.div`
-  height: 30px;
+  min-height: 30px;
   background-color: teal;
   color: white;
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
+  padding: 0 20px;
 `;
 export default function Announcement() {
   return (
