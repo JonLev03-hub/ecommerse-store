@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { popularProducts } from "../data";
 import Product from "./Product";
+import { useState, useEffect } from "react";
 
 const Container = styled.div`
 
@@ -13,7 +14,11 @@ const Container = styled.div`
   margin: 5vh auto;
 `;
 
-export default function Products() {
+export default function Products({ cat, filters, sort }) {
+  const [products, setProducts] = useState([]);
+  const [silteredproducts, setFilteredProducts] = useState([]);
+  useEffect(() => {}, [cat]);
+
   return (
     <Container>
       {popularProducts.map((item) => (
