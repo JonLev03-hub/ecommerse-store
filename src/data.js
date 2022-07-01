@@ -24,18 +24,21 @@ export const categories = [
     title: "Hiking",
     image: "./images/Hiking.jpg",
     text: "Get all the gear you need to explore where you want",
+    cat: "hiking",
   },
   {
     id: 2,
     title: "Climbing",
     image: "./images/Climbing.jpg",
     text: "Get all the gear you need to explore where you want",
+    cat: "climbing",
   },
   {
     id: 3,
     title: "Camping",
     image: "./images/WaterSports.jpg",
     text: "Get all the gear you need to explore where you want",
+    cat: "camping",
   },
 ];
 
