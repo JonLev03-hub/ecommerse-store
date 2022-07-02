@@ -12,6 +12,7 @@ const Container = styled.div`
   height: 290px;
   flex-grow: 0;
   position: relative;
+  background-color: red;
 `;
 const Image = styled.img`
   width: 100%;
@@ -50,9 +51,10 @@ const Icon = styled.div`
   }
 `;
 export default function Product(props) {
+  console.log(props.props);
   return (
     <Container>
-      <Image src={props.props.image} />
+      <Image src={props.props.img} />
       <IconContainer>
         <Icon>
           <Search />

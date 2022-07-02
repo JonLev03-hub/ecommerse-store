@@ -40,21 +40,22 @@ export default function ProductList() {
       ...filter,
       [e.target.name]: value,
     });
+    console.log(filter);
   };
   return (
     <Container>
       <Navbar />
       <Announcement />
-      <Title>Camping Gear</Title>
+      <Title>The Gear You Need</Title>
       <FilterContainer>
         <Filter>
           <FilterText>Filter Products</FilterText>
-          <Select name="category" onChange={handlefilter}>
+          <Select name="color" onChange={handlefilter}>
             <SelectItem>All</SelectItem>
-            <SelectItem>Camping</SelectItem>
-            <SelectItem>Outdoors</SelectItem>
-            <SelectItem>Backpacks</SelectItem>
-            <SelectItem>Tents</SelectItem>
+            <SelectItem>Red</SelectItem>
+            <SelectItem>Green</SelectItem>
+            <SelectItem>Blue</SelectItem>
+            <SelectItem>Orange</SelectItem>
           </Select>
         </Filter>
         <Filter>
