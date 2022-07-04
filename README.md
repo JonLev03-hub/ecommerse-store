@@ -1,70 +1,30 @@
-# Getting Started with Create React App
+# Outdoor Market Store
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a concept project for a storefront build on the MERN stack. This project is connected to the [Ecommerse-Api](https://github.com/JonLev03-hub/ecommerse-api) project that is also located inside of my github. 
 
-## Available Scripts
+This is designed to be an example ecommerese store selling outdoor exploration goods. This website features product browsing, product filtering, user authentication, cart building, and payment processing. 
 
-In the project directory, you can run:
+# Features 
 
-### `npm start`
+## Rest API [Link](https://github.com/JonLev03-hub/ecommerse-api)
+This project was built with the MERN Stack so the back end was created with Node.js and Express.js. This was extremely easy to use and since I had been working on the project by myself it was nice not needing to switch between languages when jumping from the front end to the back end development. 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## User Authentication
+User authentication was done inside of the back end, passwords were encrypted with crypto.js, and then stored inside of MongoDB.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## State Management 
+State management was all done with redux.
 
-### `npm test`
+## Payment Processing
+Payment processing was done with stripe as it was extremely easy to integrate into the front end and back end of the application. 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Data Storage
+Because this is an online store the data is mroe object based instead of tabular so for the database I went with a NoSQL option, MongoDB. This was added to the backedn API with mongoose. 
 
-### `npm run build`
+All images were stored inside of github for this project instead of an AWS bucket or simmilar service because this is not a production site, and budget was very low. In a commercial application it would be an easy switch as connecting to images in a bucket would be as simple as switching the links stored inside of the database. 
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# Future improvements 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+As stated in the API repository one major improvement that needs to be done if this was a production site would be to be hashing the passwords with salt instead of encryption. 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Along with that it would be nice to update the user interface with a more user friendly design and add some more filters and caregories for products. 
