@@ -5,6 +5,9 @@ import Newsletter from "../components/Newsletter";
 import Footer from "../components/Footer";
 import { Remove, Add } from "@mui/icons-material";
 import { breakOne, breakTwo } from "../responsive";
+import {useLocation} from "react-router-dom"
+import {useState, useEffect} from "react"
+import {publicRequest} from "../requestMethod"
 const Container = styled.div``;
 
 const Wrapper = styled.div`
@@ -102,13 +105,23 @@ const Button = styled.button`
 `;
 
 export default function Product() {
+  const location = useLocation();
+  const id = location.pathname.split("/")[2];
+  const [product, setProduct] = useState({})
+  useEffect(() => {
+    const getProduct = async () => {
+      console.log("got")
+      const res = publicRequest.get(`/product/find${id}`)
+      setProduct(res.data)
+    }
+  },[id])
   return (
     <Container>
       <Navbar />
       <Announcement />
       <Wrapper>
         <ImgContainer>
-          <Image src="./ProductImages/Backpack1.jpg"></Image>
+          <Image src={product.img}></Image>
         </ImgContainer>
         <TextContainer>
           <Title>Woods Hiking Backpack</Title>

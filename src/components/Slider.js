@@ -66,6 +66,7 @@ const Button = styled.button`
   font-size: 20px;
   cursor: pointer;
   color: white;
+  border:2px solid white;
 `;
 export default function Slider() {
   const [slide, setSlide] = useState(1);

@@ -45,7 +45,7 @@ export default function ProductList() {
     <Container>
       <Navbar />
       <Announcement />
-      <Title>Camping Gear</Title>
+      <Title>{cat}</Title>
       <FilterContainer>
         <Filter>
           <FilterText>Filter Products</FilterText>
@@ -63,7 +63,6 @@ export default function ProductList() {
             <SelectItem value="newest">Newest</SelectItem>
             <SelectItem value="asc">Price: Low-High</SelectItem>
             <SelectItem value="desc">Price: High-Low</SelectItem>
-            <SelectItem value="featured">Featured</SelectItem>
           </Select>
         </Filter>
       </FilterContainer>

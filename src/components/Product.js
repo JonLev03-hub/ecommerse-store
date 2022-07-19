@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {Link} from "react-router-dom"
 import {
   ShoppingCartOutlined,
   Search,
@@ -52,16 +53,22 @@ const Icon = styled.div`
 export default function Product(props) {
   return (
     <Container>
-      <Image src={props.props.image} />
+      <Image src={props.props.img} />
       <IconContainer>
         <Icon>
+          <Link to = {`/product/${props.props._id}`}>
           <Search />
+          </Link>
         </Icon>
         <Icon>
+
           <FavoriteBorderOutlined />
+
         </Icon>
         <Icon>
+
           <ShoppingCartOutlined />
+
         </Icon>
       </IconContainer>
     </Container>
