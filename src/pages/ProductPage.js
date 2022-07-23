@@ -107,14 +107,17 @@ const Button = styled.button`
 export default function Product() {
   const location = useLocation();
   const id = location.pathname.split("/")[2];
-  const [product, setProduct] = useState({})
+  const [product, setProduct] = useState({color: [],size: []})
   useEffect(() => {
     const getProduct = async () => {
-      console.log("got")
-      const res = publicRequest.get(`/product/find${id}`)
+      const res = await publicRequest.get(`/product/find/${id}`)
       setProduct(res.data)
     }
+    getProduct()
   },[id])
+  useEffect(()=> {
+    console.log(product.color)
+  },[product])
   return (
     <Container>
       <Navbar />
@@ -124,32 +127,26 @@ export default function Product() {
           <Image src={product.img}></Image>
         </ImgContainer>
         <TextContainer>
-          <Title>Woods Hiking Backpack</Title>
+          <Title>{product.title}</Title>
           <Description>
-            This is a premium quality hiking backpack produced by Woods inc. It
-            can fit enough for a milti day backpacking trip and has double
-            inline stitching to prevent ripping! This backpack comes with 4
-            small pockets for easy to lose items and 3 large sections in the
-            main body for extra storage.
+            {product.desc}
           </Description>
-          <Price>$100</Price>
+          <Price>${product.price}</Price>
           <FilterContainer>
             <Filter>
               <FilterTitle>Select Color</FilterTitle>
               <Select>
-                <SelectItem>Red</SelectItem>
-                <SelectItem>Blue</SelectItem>
-                <SelectItem>Green</SelectItem>
-                <SelectItem>Teal</SelectItem>
-                <SelectItem>Yellow</SelectItem>
+                {product.color.map((c)=>
+                  <SelectItem>{c}</SelectItem>
+                )}
               </Select>
             </Filter>
             <Filter>
               <FilterTitle>Select Size</FilterTitle>
               <Select>
-                <SelectItem>Small</SelectItem>
-                <SelectItem>Medium</SelectItem>
-                <SelectItem>Large</SelectItem>
+              {product.size.map((s)=>
+                  <SelectItem>{s}</SelectItem>
+                )}
               </Select>
             </Filter>
           </FilterContainer>
