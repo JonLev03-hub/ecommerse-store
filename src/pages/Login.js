@@ -2,6 +2,9 @@ import styled from "styled-components";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { breakOne, breakTwo } from "../responsive";
+import {useState} from"react"
+import { login } from "../redux/apiCalls";
+import { useDispatch, useSelector} from "react-redux"
 const Container = styled.div`
   height: 100vh;
 `;
@@ -51,6 +54,10 @@ const Button = styled.button`
   color: white;
   cursor: pointer;
   margin: 20px 0;
+  &:disabled{
+    color:teal;
+    cursor:not-allowed;
+  }
 `;
 const Link = styled.a`
   font-size: 14px;
@@ -59,8 +66,22 @@ const Link = styled.a`
   cursor: pointer;
   text-decoration: underline;
 `;
+const Error = styled.span`
+color:red;
+width:100%;
+margin:10px 0px;
+`;
 
 export default function Login() {
+  const [username,setUsername]= useState("")
+  const [password,setPassword]= useState("")
+  const dispatch = useDispatch();
+  const{isFetching,error} = useSelector(state=> state.user)
+  const handleClick = (e)=> {
+    e.preventDefault()
+    login(dispatch,{username,password})
+    console.log("test",isFetching)
+  }
   return (
     <Container>
       <Disapear>
@@ -70,9 +91,10 @@ export default function Login() {
         <Wrapper>
           <Title>Login</Title>
           <Form>
-            <Input type="text" placeholder="Email / Username" />
-            <Input type="text" placeholder="Password" />
-            <Button>Login</Button>
+            <Input type="text" placeholder="Email / Username" onChange = {(e)=>setUsername(e.target.value)}/>
+            <Input type="password" placeholder="Password" onChange = {(e)=>setPassword(e.target.value)} />
+            {error && <Error>Something went wrong</Error>}
+            <Button onClick = {handleClick} disabled = {isFetching}>Login</Button>
             <Link>Forgot Username / Password</Link>
             <Link>Create Account</Link>
           </Form>
