@@ -1,5 +1,5 @@
 # Outdoor Market Store
-
+![image](https://user-images.githubusercontent.com/81537476/181162485-5109d16a-7f80-48d9-b567-48768aaa6bfd.png)
 This is a concept project for a storefront build on the MERN stack. This project is connected to the [Ecommerse-Api](https://github.com/JonLev03-hub/ecommerse-api) project that is also located inside of my github. 
 
 This is designed to be an example ecommerese store selling outdoor exploration goods. This website features product browsing, product filtering, user authentication, cart building, and payment processing. 
