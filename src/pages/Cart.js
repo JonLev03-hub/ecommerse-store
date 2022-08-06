@@ -11,6 +11,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { userRequest } from "../requestMethod";
 import { useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom";
 const KEY = process.env.REACT_APP_STRIPE
 const Container = styled.div``;
 const Wrapper = styled.div`
@@ -185,7 +186,7 @@ export default function Cart() {
         <Wrapper>
           <Title>Shopping Cart</Title>
           <TopContainer>
-            <TopButton>Continue Shopping</TopButton>
+            <Link to = "/products/all"><TopButton>Continue Shopping</TopButton></Link>
             <TopTexts>
               <TopText>Shopping Bag ({cart.quantity})</TopText>
               <TopText>Wish List (5)</TopText>

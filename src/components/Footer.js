@@ -30,6 +30,7 @@ const MediaIcon = styled.div`
   justify-content: center;
   align-items: center;
   margin: 10px;
+  cursor:pointer;
 `;
 
 const Center = styled.div`

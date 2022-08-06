@@ -4,6 +4,7 @@ import ArrowForwardIosOutlinedIcon from "@mui/icons-material/ArrowForwardIosOutl
 import { useState } from "react";
 import { slides } from "../data";
 import { breakOne } from "../responsive";
+import {Link} from "react-router-dom"
 
 const Container = styled.div`
   width: 100%;
@@ -89,7 +90,7 @@ export default function Slider() {
             <TextContainer>
               <Title>{item.title}</Title>
               <Text>{item.text}</Text>
-              <Button>{item.button}</Button>
+              <Link to = "/products/all"><Button>{item.button}</Button></Link>
             </TextContainer>
           </Slide>
         ))}

@@ -65,10 +65,10 @@ export default function Product(props) {
           <FavoriteBorderOutlined />
 
         </Icon>
-        <Icon>
-
-          <ShoppingCartOutlined />
-
+        <Icon >
+          <Link to = {`/product/${props.props._id}`}>
+            <ShoppingCartOutlined />
+          </Link>
         </Icon>
       </IconContainer>
     </Container>

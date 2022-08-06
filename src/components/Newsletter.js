@@ -54,6 +54,9 @@ const Button = styled.button`
 `;
 
 export default function Newsletter() {
+  const handleClick = (e)=> {
+    e.preventDefault()
+  }
   return (
     <Container>
       <Title>Subscribe to our Newsletter!</Title>
@@ -63,7 +66,7 @@ export default function Newsletter() {
       </Text>
       <Form>
         <Input type="text" placeholder="Your Email" />
-        <Button>
+        <Button onclick = {handleClick}>
           <Send />
         </Button>
       </Form>
