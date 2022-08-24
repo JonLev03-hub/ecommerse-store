@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {Link} from "react-router-dom"
 import {
   ShoppingCartOutlined,
   Search,
@@ -57,13 +58,19 @@ export default function Product(props) {
       <Image src={props.props.img} />
       <IconContainer>
         <Icon>
+          <Link to = {`/product/${props.props._id}`}>
           <Search />
+          </Link>
         </Icon>
         <Icon>
+
           <FavoriteBorderOutlined />
+
         </Icon>
-        <Icon>
-          <ShoppingCartOutlined />
+        <Icon >
+          <Link to = {`/product/${props.props._id}`}>
+            <ShoppingCartOutlined />
+          </Link>
         </Icon>
       </IconContainer>
     </Container>

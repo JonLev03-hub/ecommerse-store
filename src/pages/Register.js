@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { breakOne, breakTwo } from "../responsive";
+import { useState } from "react";
 const Container = styled.div`
   height: 100vh;
 `;
@@ -55,8 +56,17 @@ const Button = styled.button`
   color: white;
   cursor: pointer;
 `;
-
+const Error = styled.span`
+color:red;
+width:100%;
+margin:10px 0px;
+`;
 export default function Register() {
+  const [disabled,setDisabled] = useState(false)
+  const handleClick = (e)=> {
+    e.preventDefault()
+    setDisabled(true)
+  }
   return (
     <Container>
       <Disapear>
@@ -76,7 +86,8 @@ export default function Register() {
               By clicking Register, you agree to our{" "}
               <a>Terms and Conditions.</a>
             </Agreement>
-            <Button>Create Account</Button>
+            {disabled && <Error>This Feature is currently Disabled since this is not a production build</Error>}
+            <Button onClick = {handleClick} >Create Account</Button>
           </Form>
         </Wrapper>
       </Main>

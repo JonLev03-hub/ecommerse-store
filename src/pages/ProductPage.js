@@ -5,6 +5,11 @@ import Newsletter from "../components/Newsletter";
 import Footer from "../components/Footer";
 import { Remove, Add } from "@mui/icons-material";
 import { breakOne, breakTwo } from "../responsive";
+import {useLocation} from "react-router-dom"
+import {useState, useEffect} from "react"
+import {publicRequest} from "../requestMethod"
+import {addProduct} from "../redux/cartRedux"
+import { useDispatch } from "react-redux";
 const Container = styled.div``;
 
 const Wrapper = styled.div`
@@ -102,52 +107,71 @@ const Button = styled.button`
 `;
 
 export default function Product() {
+  const location = useLocation();
+  const id = location.pathname.split("/")[2];
+  const [product, setProduct] = useState({color: [],size: []})
+  const [quantity,setQuantity] = useState(1)
+  const [color,setColor] = useState("")
+  const [size,setSize] = useState("")
+  const disbatch = useDispatch()
+  const handleQuantity = (param) => {
+    if (param === "dec" && quantity > 1){
+        setQuantity(quantity - 1)
+    } else if (param === "add") {
+      setQuantity(quantity + 1)
+    }
+  }
+  const HandleClick = () =>{
+    //Update cart
+    disbatch(addProduct({...product,quantity,color,size}))
+  }
+  useEffect(() => {
+    const getProduct = async () => {
+      const res = await publicRequest.get(`/product/find/${id}`)
+      setProduct(res.data)
+    }
+    getProduct()
+  },[id])
   return (
     <Container>
       <Navbar />
       <Announcement />
       <Wrapper>
         <ImgContainer>
-          <Image src="./ProductImages/Backpack1.jpg"></Image>
+          <Image src={product.img}></Image>
         </ImgContainer>
         <TextContainer>
-          <Title>Woods Hiking Backpack</Title>
+          <Title>{product.title}</Title>
           <Description>
-            This is a premium quality hiking backpack produced by Woods inc. It
-            can fit enough for a milti day backpacking trip and has double
-            inline stitching to prevent ripping! This backpack comes with 4
-            small pockets for easy to lose items and 3 large sections in the
-            main body for extra storage.
+            {product.desc}
           </Description>
-          <Price>$100</Price>
+          <Price>${product.price}</Price>
           <FilterContainer>
             <Filter>
-              <FilterTitle>Select Color</FilterTitle>
+              <FilterTitle onChange = {(e)=> setColor(e.target.value)}>Select Color</FilterTitle>
               <Select>
-                <SelectItem>Red</SelectItem>
-                <SelectItem>Blue</SelectItem>
-                <SelectItem>Green</SelectItem>
-                <SelectItem>Teal</SelectItem>
-                <SelectItem>Yellow</SelectItem>
+                {product.color.map((c)=>
+                  <SelectItem value = {c}>{c}</SelectItem>
+                )}
               </Select>
             </Filter>
             <Filter>
               <FilterTitle>Select Size</FilterTitle>
-              <Select>
-                <SelectItem>Small</SelectItem>
-                <SelectItem>Medium</SelectItem>
-                <SelectItem>Large</SelectItem>
+              <Select onChange = {(e)=> setSize(e.target.value)}>
+              {product.size.map((s)=>
+                  <SelectItem value = {s}>{s}</SelectItem>
+                )}
               </Select>
             </Filter>
           </FilterContainer>
           <AddContainer>
             <AmountContainer>
-              <Remove />
-              <Amount>1</Amount>
-              <Add />
+              <Remove onClick = {() => handleQuantity("dec")}/>
+              <Amount>{quantity}</Amount>
+              <Add onClick = {() => handleQuantity("add")}/>
             </AmountContainer>
           </AddContainer>
-          <Button>Add To Cart</Button>
+          <Button onClick = {HandleClick}>Add To Cart</Button>
         </TextContainer>
       </Wrapper>
       <Newsletter />

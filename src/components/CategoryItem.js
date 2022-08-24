@@ -35,6 +35,7 @@ const Button = styled.button`
   font-size: 20px;
   cursor: pointer;
   color: white;
+  border:2px solid white;
 `;
 export default function CategoryItem(props) {
   return (

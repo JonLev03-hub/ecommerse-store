@@ -5,7 +5,14 @@ import Newsletter from "../components/Newsletter";
 import Footer from "../components/Footer";
 import { Add, Remove } from "@mui/icons-material";
 import { breakOne, breakTwo } from "../responsive";
-
+import { useSelector } from "react-redux";
+import StripeCheckout from "react-stripe-checkout";
+import { useState } from "react";
+import { useEffect } from "react";
+import { userRequest } from "../requestMethod";
+import { useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom";
+const KEY = process.env.REACT_APP_STRIPE
 const Container = styled.div``;
 const Wrapper = styled.div`
   padding: 20px;
@@ -144,9 +151,33 @@ const SummaryButton = styled.button`
   padding: 10px;
   background-color: teal;
   color: white;
+  border:none;
+  cursor:pointer;
 `;
 
-export default function Home() {
+export default function Cart() {
+  const cart = useSelector(state=>state.cart)
+  const [stripeToken,setStripeToken] = useState(null)
+  const navigate = useNavigate()
+  const onToken = (token)=> {
+    setStripeToken(token)
+  }
+  useEffect(()=> {
+    const makeRequest = async ()=>{
+      try{
+
+        const res = await userRequest.post("/checkout/payment",{
+          tokenId:stripeToken.id,
+          amount: cart.total*100,
+        })
+        navigate("/success",{data:res.data})
+      } catch (err) {
+        console.log(err)
+      }
+    }
+    stripeToken && cart.total >= 1 && makeRequest()
+  }, [stripeToken,cart.total,navigate]
+  )
   return (
     <div>
       <Container>
@@ -155,89 +186,61 @@ export default function Home() {
         <Wrapper>
           <Title>Shopping Cart</Title>
           <TopContainer>
-            <TopButton>Continue Shopping</TopButton>
+            <Link to = "/products/all"><TopButton>Continue Shopping</TopButton></Link>
             <TopTexts>
-              <TopText>Shopping Bag (2)</TopText>
+              <TopText>Shopping Bag ({cart.quantity})</TopText>
               <TopText>Wish List (5)</TopText>
             </TopTexts>
-            <TopButton type="filled">Checkout Now</TopButton>
+            <StripeCheckout
+              name = "Outdoor Market"
+              billingAddress
+              shippingAddress
+              description={`Your Total is $${cart.total}`}
+              total = {cart.total*100}
+              token = {onToken}
+              stripeKey = {KEY}
+              >
+              <TopButton type="filled">Checkout Now</TopButton>
+            </StripeCheckout>
           </TopContainer>
           <BottomContainer>
             <Info>
-              <Product>
+              {cart.products.map((product)=>(
+                <>
+                <Product>
                 <ProductDetails>
-                  <Image src="./ProductImages/Backpack1.jpg" />
+                  <Image src={product.img}></Image>
                   <Details>
                     <ProductName>
-                      <b>Product: </b>Woods Backpack
+                      <b>Product: </b>{product.title}
                     </ProductName>
-                    <ProductColor color="blue" />
+                    <ProductName>
+                      <b>Id: </b>{product._id}
+                    </ProductName>
+                    <ProductColor color={product.color} />
                     <ProductSize>
-                      <b>Size: </b>Large
+                      <b>Size: </b>{product.size}
                     </ProductSize>
                   </Details>
                 </ProductDetails>
                 <PriceDetails>
                   <ProductAmountContainer>
                     <Remove />
-                    <ProductAmount>2</ProductAmount>
+                    <ProductAmount>{product.quantity}</ProductAmount>
                     <Add />
                   </ProductAmountContainer>
-                  <Price>$200</Price>
+                  <Price>${product.price*product.quantity}</Price>
                 </PriceDetails>
               </Product>
-              <Hr />
-              <Product>
-                <ProductDetails>
-                  <Image src="./ProductImages/Backpack1.jpg"></Image>
-                  <Details>
-                    <ProductName>
-                      <b>Product: </b>Woods Backpack
-                    </ProductName>
-                    <ProductColor color="blue" />
-                    <ProductSize>
-                      <b>Size: </b>Large
-                    </ProductSize>
-                  </Details>
-                </ProductDetails>
-                <PriceDetails>
-                  <ProductAmountContainer>
-                    <Remove />
-                    <ProductAmount>2</ProductAmount>
-                    <Add />
-                  </ProductAmountContainer>
-                  <Price>$200</Price>
-                </PriceDetails>
-              </Product>
-              <Hr />
-              <Product>
-                <ProductDetails>
-                  <Image src="./ProductImages/Backpack1.jpg"></Image>
-                  <Details>
-                    <ProductName>
-                      <b>Product: </b>Woods Backpack
-                    </ProductName>
-                    <ProductColor color="blue" />
-                    <ProductSize>
-                      <b>Size: </b>Large
-                    </ProductSize>
-                  </Details>
-                </ProductDetails>
-                <PriceDetails>
-                  <ProductAmountContainer>
-                    <Remove />
-                    <ProductAmount>2</ProductAmount>
-                    <Add />
-                  </ProductAmountContainer>
-                  <Price>$200</Price>
-                </PriceDetails>
-              </Product>
+              <Hr/>
+              </>
+              ))}
             </Info>
             <Summary>
               <SummaryTitle>Order Summary</SummaryTitle>
               <SummaryItem>
                 <SummaryItemText>Subtotal</SummaryItemText>
-                <SummaryItemPrice>$30</SummaryItemPrice>
+                <SummaryItemPrice>${cart.total}</SummaryItemPrice>
               </SummaryItem>
               <SummaryItem>
                 <SummaryItemText>Estimated Shipping</SummaryItemText>
@@ -245,13 +248,23 @@ export default function Home() {
               </SummaryItem>
               <SummaryItem>
                 <SummaryItemText>Discount</SummaryItemText>
-                <SummaryItemPrice>-$30</SummaryItemPrice>
+                <SummaryItemPrice>-$10</SummaryItemPrice>
               </SummaryItem>
               <SummaryItem bold="bold">
                 <SummaryItemText>Subtotal</SummaryItemText>
-                <SummaryItemPrice>$10</SummaryItemPrice>
+                <SummaryItemPrice>${cart.total}</SummaryItemPrice>
               </SummaryItem>
-              <SummaryButton>Checkout Now</SummaryButton>
+              <StripeCheckout
+              name = "Outdoor Market"
+              billingAddress
+              shippingAddress
+              description={`Your Total is $${cart.total}`}
+              total = {cart.total*100}
+              token = {onToken}
+              stripeKey = {KEY}
+              >
+              <SummaryButton type="filled">Checkout Now</SummaryButton>
+            </StripeCheckout>
             </Summary>
           </BottomContainer>
         </Wrapper>
