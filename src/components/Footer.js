@@ -30,7 +30,7 @@ const MediaIcon = styled.div`
   justify-content: center;
   align-items: center;
   margin: 10px;
-  cursor:pointer;
+  cursor: pointer;
 `;
 
 const Center = styled.div`
@@ -62,7 +62,7 @@ const ContactItem = styled.div`
   align-items: center;
 `;
 const Payment = styled.img`
-  width: 50%;
+  width: 90%;
   border-radius: 10px;
 `;
 
@@ -125,7 +125,10 @@ export default function Footer() {
             someone@example.com
           </a>
         </ContactItem>
-        <Payment src="./images/payment.png" alt="Payment options we accept" />
+        <Payment
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSje4OnDbF1r_e9cAlrXucxfJwKJ1GpLfbxqIcgh6ih0FNvzOZ8l6tMfmnQxXPV8RCXjA&usqp=CAU"
+          alt="Payment options we accept"
+        />
       </Right>
     </Container>
   );

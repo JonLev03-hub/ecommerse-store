@@ -46,11 +46,7 @@ export default function ProductList() {
     <Container>
       <Navbar />
       <Announcement />
-<<<<<<< HEAD
-      <Title>The Gear You Need</Title>
-=======
       <Title>{cat}</Title>
->>>>>>> 76bef3e4b60b2e40a5341270fb5a9f423b6da64f
       <FilterContainer>
         <Filter>
           <FilterText>Filter Products</FilterText>

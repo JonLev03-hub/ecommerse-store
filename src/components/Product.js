@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom";
 import {
   ShoppingCartOutlined,
   Search,
@@ -55,20 +55,18 @@ export default function Product(props) {
   console.log(props.props);
   return (
     <Container>
-      <Image src={props.props.img} />
+      <Image src={`https://picsum.photos/seed/p${props.props.title}/200/200`} />
       <IconContainer>
         <Icon>
-          <Link to = {`/product/${props.props._id}`}>
-          <Search />
+          <Link to={`/product/${props.props._id}`}>
+            <Search />
           </Link>
         </Icon>
         <Icon>
-
           <FavoriteBorderOutlined />
-
         </Icon>
-        <Icon >
-          <Link to = {`/product/${props.props._id}`}>
+        <Icon>
+          <Link to={`/product/${props.props._id}`}>
             <ShoppingCartOutlined />
           </Link>
         </Icon>

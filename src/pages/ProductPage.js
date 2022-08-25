@@ -5,10 +5,10 @@ import Newsletter from "../components/Newsletter";
 import Footer from "../components/Footer";
 import { Remove, Add } from "@mui/icons-material";
 import { breakOne, breakTwo } from "../responsive";
-import {useLocation} from "react-router-dom"
-import {useState, useEffect} from "react"
-import {publicRequest} from "../requestMethod"
-import {addProduct} from "../redux/cartRedux"
+import { useLocation } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { publicRequest } from "../requestMethod";
+import { addProduct } from "../redux/cartRedux";
 import { useDispatch } from "react-redux";
 const Container = styled.div``;
 
@@ -109,29 +109,29 @@ const Button = styled.button`
 export default function Product() {
   const location = useLocation();
   const id = location.pathname.split("/")[2];
-  const [product, setProduct] = useState({color: [],size: []})
-  const [quantity,setQuantity] = useState(1)
-  const [color,setColor] = useState("")
-  const [size,setSize] = useState("")
-  const disbatch = useDispatch()
+  const [product, setProduct] = useState({ color: [], size: [] });
+  const [quantity, setQuantity] = useState(1);
+  const [color, setColor] = useState("");
+  const [size, setSize] = useState("L");
+  const disbatch = useDispatch();
   const handleQuantity = (param) => {
-    if (param === "dec" && quantity > 1){
-        setQuantity(quantity - 1)
+    if (param === "dec" && quantity > 1) {
+      setQuantity(quantity - 1);
     } else if (param === "add") {
-      setQuantity(quantity + 1)
+      setQuantity(quantity + 1);
     }
-  }
-  const HandleClick = () =>{
+  };
+  const HandleClick = () => {
     //Update cart
-    disbatch(addProduct({...product,quantity,color,size}))
-  }
+    disbatch(addProduct({ ...product, quantity, color, size }));
+  };
   useEffect(() => {
     const getProduct = async () => {
-      const res = await publicRequest.get(`/product/find/${id}`)
-      setProduct(res.data)
-    }
-    getProduct()
-  },[id])
+      const res = await publicRequest.get(`/product/find/${id}`);
+      setProduct(res.data);
+    };
+    getProduct();
+  }, [id]);
   return (
     <Container>
       <Navbar />
@@ -142,36 +142,36 @@ export default function Product() {
         </ImgContainer>
         <TextContainer>
           <Title>{product.title}</Title>
-          <Description>
-            {product.desc}
-          </Description>
+          <Description>{product.desc}</Description>
           <Price>${product.price}</Price>
           <FilterContainer>
             <Filter>
-              <FilterTitle onChange = {(e)=> setColor(e.target.value)}>Select Color</FilterTitle>
+              <FilterTitle onChange={(e) => setColor(e.target.value)}>
+                Select Color
+              </FilterTitle>
               <Select>
-                {product.color.map((c)=>
-                  <SelectItem value = {c}>{c}</SelectItem>
-                )}
+                {product.color.map((c) => (
+                  <SelectItem value={c}>{c}</SelectItem>
+                ))}
               </Select>
             </Filter>
             <Filter>
               <FilterTitle>Select Size</FilterTitle>
-              <Select onChange = {(e)=> setSize(e.target.value)}>
-              {product.size.map((s)=>
-                  <SelectItem value = {s}>{s}</SelectItem>
-                )}
+              <Select onChange={(e) => setSize(e.target.value)}>
+                {product.size.map((s) => (
+                  <SelectItem value={s}>{s}</SelectItem>
+                ))}
               </Select>
             </Filter>
           </FilterContainer>
           <AddContainer>
             <AmountContainer>
-              <Remove onClick = {() => handleQuantity("dec")}/>
+              <Remove onClick={() => handleQuantity("dec")} />
               <Amount>{quantity}</Amount>
-              <Add onClick = {() => handleQuantity("add")}/>
+              <Add onClick={() => handleQuantity("add")} />
             </AmountContainer>
           </AddContainer>
-          <Button onClick = {HandleClick}>Add To Cart</Button>
+          <Button onClick={HandleClick}>Add To Cart</Button>
         </TextContainer>
       </Wrapper>
       <Newsletter />
